@@ -96,7 +96,6 @@ O projeto inclui arquivos para conteinerização:
 
 O projeto inclui Spring Actuator para monitoramento:
 - http://localhost:8080/actuator/health
-- http://localhost:8080/actuator/info
 - http://localhost:8080/actuator/metrics
 
 
