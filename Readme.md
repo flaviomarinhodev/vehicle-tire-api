@@ -78,6 +78,24 @@ O projeto utiliza PostgreSQL como banco de dados principal e Flyway para gerenci
 - **VehicleTire**: Relacionamento entre veículos e pneus
 - **Enums**: VehicleStatus e TireStatus para controle de estados
 
+## Variáveis de Ambiente
+DB_URL=jdbc:postgresql://localhost:5432/vehicle_tire_db
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+SERVER_PORT=8080
+DB_POOL_MAX_SIZE=20
+DB_POOL_MIN_IDLE=5
+DB_CONNECTION_TIMEOUT=20000
+HIBERNATE_DDL_AUTO=validate
+JPA_SHOW_SQL=false
+HIBERNATE_SQL_LOG_LEVEL=DEBUG
+HIBERNATE_BINDER_LOG_LEVEL=TRACE
+FLYWAY_ENABLED=true
+FLYWAY_LOCATIONS=classpath:db/migration
+SWAGGER_UI_PATH=/swagger-ui.html
+MANAGEMENT_ENDPOINTS=health,info,metrics
+APP_NAME=vehicle-tire-api
+
 ## Documentação da API
 
 A documentação completa da API está disponível através do Swagger UI:
