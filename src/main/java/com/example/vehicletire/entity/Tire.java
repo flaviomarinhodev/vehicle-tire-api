@@ -1,5 +1,6 @@
 package com.example.vehicletire.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,6 +37,7 @@ public class Tire extends AbstractModel {
     private TireStatus status;
 
     @OneToMany(mappedBy = "tire", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<VehicleTire> vehicleTires = new HashSet<>();
 
     @CreationTimestamp
