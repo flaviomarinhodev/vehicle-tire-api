@@ -57,6 +57,7 @@ public class VehicleController {
         return ResponseEntity.ok().build();
     }
 
+    @Operation(summary = "Desvincula um pneu do veículo", description = "Desvincula um pneu ao veículo")
     @DeleteMapping("/{vehicleId}/pneus/{tireId}")
     public ResponseEntity<Void> detachTire(
             @PathVariable Long vehicleId,
