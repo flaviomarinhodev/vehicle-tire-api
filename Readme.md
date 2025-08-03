@@ -49,7 +49,7 @@ A API oferece os seguintes endpoints principais:
 
 1. Clone o repositório:
    ```bash
-   git clone [url-do-repositorio]
+   git clone https://github.com/flaviomarinhodev/vehicle-tire-api.git
    cd vehicle-tire-api
    ```
 
