@@ -66,17 +66,48 @@ A API oferece os seguintes endpoints principais:
 4. A aplicação estará disponível em:
     - API: http://localhost:8080
 
+## Exemplos de Requisição
+
+Cadastrar um novo veículo:
+   ```
+curl -X POST http://localhost:8080/api/v1/veiculos \
+-H "Content-Type: application/json" \
+-d '{
+"placa": "ABC1D23",
+"marca": "Honda",
+"modelo": "Civic",
+"ano": 2023,
+"quilometragem": 15000,
+"status": "ATIVO"
+}'
+```
+Listar todos os veículos cadastrados:
+```
+curl -X GET http://localhost:8080/api/v1/veiculos \
+  -H "Accept: application/json"
+```
+Buscar veículo pelo id:
+```
+curl http://localhost:8080/api/v1/veiculos/1
+```
+Listar todos os pneus disponíveis:
+```
+curl http://localhost:8080/api/v1/tires/disponiveis
+```
+Buscar pneu por marca:
+```
+curl http://localhost:8080/api/v1/tires/marca?marca=GOODYEAR
+```
+
+## Documentação da API
+
+A documentação completa da API está disponível através do Swagger UI:
+- http://localhost:8080/swagger-ui.html
+
 
 ## Banco de Dados
 
 O projeto utiliza PostgreSQL como banco de dados principal e Flyway para gerenciar migrações.
-
-### Modelo de Dados
-
-- **Vehicle**: Armazena informações sobre veículos
-- **Tire**: Contém dados dos pneus
-- **VehicleTire**: Relacionamento entre veículos e pneus
-- **Enums**: VehicleStatus e TireStatus para controle de estados
 
 ## Variáveis de Ambiente
 DB_URL=jdbc:postgresql://localhost:5432/vehicle_tire_db
@@ -96,11 +127,6 @@ SWAGGER_UI_PATH=/swagger-ui.html
 MANAGEMENT_ENDPOINTS=health,info,metrics
 APP_NAME=vehicle-tire-api
 
-## Documentação da API
-
-A documentação completa da API está disponível através do Swagger UI:
-- http://localhost:8080/swagger-ui.html
-
 ## Docker
 
 O projeto inclui arquivos para conteinerização:
@@ -113,7 +139,6 @@ O projeto inclui arquivos para conteinerização:
 
 O projeto inclui Spring Actuator para monitoramento:
 - http://localhost:8080/actuator/health
-- http://localhost:8080/actuator/metrics
 
 
 ---
