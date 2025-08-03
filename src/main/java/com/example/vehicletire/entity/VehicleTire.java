@@ -11,12 +11,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "vehicle_tires",
         uniqueConstraints = @UniqueConstraint(columnNames = {"vehicle_id", "posicao"}))
 public class VehicleTire {
@@ -38,4 +42,18 @@ public class VehicleTire {
     @CreationTimestamp
     private LocalDateTime installedAt;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof VehicleTire)) return false;
+        VehicleTire that = (VehicleTire) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
+
+
