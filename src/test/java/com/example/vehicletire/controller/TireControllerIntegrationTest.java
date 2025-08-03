@@ -32,7 +32,6 @@ class TireControllerIntegrationTest {
 
     @Test
     void criarPneuDeveCriarNovoPneu() throws Exception {
-        // Cria um pneu com número de fogo único para evitar conflitos
         String numeroFogoUnico = "PNU" + (int)(Math.random() * 9000 + 1000);
 
         Tire tire = new Tire();
@@ -52,7 +51,6 @@ class TireControllerIntegrationTest {
 
     @Test
     void atualizarPneuDeveAtualizarPneuExistente() throws Exception {
-        // Primeiro, criar um pneu
         String numeroFogoUnico = "UPD" + (int)(Math.random() * 9000 + 1000);
 
         Tire tireOriginal = new Tire();
@@ -69,7 +67,6 @@ class TireControllerIntegrationTest {
 
         Long id = objectMapper.readTree(createResult.getResponse().getContentAsString()).get("id").asLong();
 
-        // Atualizar o pneu
         Tire tireAtualizado = new Tire();
         tireAtualizado.setNumeroFogo(numeroFogoUnico);
         tireAtualizado.setMarca("Goodyear");
@@ -86,7 +83,6 @@ class TireControllerIntegrationTest {
 
     @Test
     void removerPneuDeveRemoverPneuExistente() throws Exception {
-        // Primeiro, criar um pneu
         String numeroFogoUnico = "DEL" + (int)(Math.random() * 9000 + 1000);
 
         Tire tire = new Tire();
@@ -103,7 +99,6 @@ class TireControllerIntegrationTest {
 
         Long id = objectMapper.readTree(createResult.getResponse().getContentAsString()).get("id").asLong();
 
-        // Remover o pneu
         mockMvc.perform(delete("/api/v1/tires/{id}", id))
                 .andExpect(status().isNoContent());
     }
@@ -144,7 +139,6 @@ class TireControllerIntegrationTest {
 
     @Test
     void buscarPorIdComVeiculosDeveRetornarPneuComVeiculosQuandoExiste() throws Exception {
-        // Criar um pneu primeiro
         String numeroFogoUnico = "VEH" + (int)(Math.random() * 9000 + 1000);
 
         Tire tire = new Tire();
@@ -161,7 +155,6 @@ class TireControllerIntegrationTest {
 
         Long id = objectMapper.readTree(createResult.getResponse().getContentAsString()).get("id").asLong();
 
-        // Buscar por ID com veículos
         mockMvc.perform(get("/api/v1/tires/{id}/veiculos", id))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

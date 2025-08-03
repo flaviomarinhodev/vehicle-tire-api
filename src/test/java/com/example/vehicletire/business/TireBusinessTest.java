@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 class TireBusinessTest {
 
     @Mock
-    private TireService tireService;  // Alterado para TireService
+    private TireService tireService;
 
     @InjectMocks
     private TireBusiness tireBusiness;
@@ -41,14 +41,11 @@ class TireBusinessTest {
 
     @Test
     void cadastrarNovoPneuDeveSalvarERetornarPneu() {
-        // Arrange
         when(tireService.existsByNumeroFogo("NF123")).thenReturn(false);  // Adicionar este mock
         when(tireService.save(any(Tire.class))).thenReturn(tire);  // Alterado para tireService
 
-        // Act
         Tire result = tireBusiness.cadastrarNovoPneu(tire);
 
-        // Assert
         assertNotNull(result);
         assertEquals("NF123", result.getNumeroFogo());
         assertEquals("Michelin", result.getMarca());
@@ -57,13 +54,10 @@ class TireBusinessTest {
 
     @Test
     void listarTodosDisponiveisDeveRetornarPneusDisponiveis() {
-        // Arrange
         when(tireService.findAllAvailable()).thenReturn(Arrays.asList(tire));  // Alterado para tireService
 
-        // Act
         List<Tire> result = tireBusiness.listarTodosDisponiveis();
 
-        // Assert
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals("NF123", result.get(0).getNumeroFogo());
@@ -71,20 +65,16 @@ class TireBusinessTest {
 
     @Test
     void buscarPorNumeroFogoDeveRetornarPneuQuandoExiste() {
-        // Arrange
         when(tireService.findByNumeroFogo("NF123")).thenReturn(Optional.of(tire));  // Alterado para tireService
 
-        // Act
         Optional<Tire> result = tireBusiness.buscarPorNumeroFogo("NF123");
 
-        // Assert
         assertTrue(result.isPresent());
         assertEquals("NF123", result.get().getNumeroFogo());
     }
 
     @Test
     void atualizarPneuDeveAtualizarERetornarPneu() {
-        // Arrange
         when(tireService.findById(1L)).thenReturn(Optional.of(tire));  // Alterado para tireService
         when(tireService.save(any(Tire.class))).thenReturn(tire);  // Alterado para tireService
 
@@ -92,20 +82,16 @@ class TireBusinessTest {
         dadosAtualizados.setMarca("Pirelli");
         dadosAtualizados.setPressaoAtual(35.0);
 
-        // Act
         Tire result = tireBusiness.atualizarPneu(1L, dadosAtualizados);
 
-        // Assert
         assertNotNull(result);
         verify(tireService, times(1)).save(any(Tire.class));  // Alterado para tireService
     }
 
     @Test
     void cadastrarNovoPneuDeveLancarExcecaoSeNumeroFogoJaExiste() {
-        // Arrange
         when(tireService.existsByNumeroFogo("NF123")).thenReturn(true);
 
-        // Act & Assert
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             tireBusiness.cadastrarNovoPneu(tire);
         });
