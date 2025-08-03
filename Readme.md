@@ -11,11 +11,11 @@ Esta aplicação é uma API RESTful para gerenciamento de veículos e pneus, per
 - **Spring Data JPA**
 - **Spring MVC**
 - **PostgreSQL 15**
-- **Flyway** (Migração de banco de dados)
-- **Lombok** (Redução de código boilerplate)
-- **OpenAPI/Swagger** (Documentação da API)
-- **Docker & Docker Compose** (Conteinerização)
-- **Maven** (Gerenciamento de dependências)
+- **Flyway** 
+- **Lombok** 
+- **OpenAPI/Swagger** 
+- **Docker & Docker Compose** 
+- **Maven** 
 
 ## Estrutura do Projeto
 
