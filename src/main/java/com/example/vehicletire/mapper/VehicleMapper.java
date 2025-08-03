@@ -9,18 +9,28 @@ import com.example.vehicletire.entity.VehicleTire;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 @Component
 public class VehicleMapper {
 
     public VehicleListResponseDTO toListResponseDTO(Vehicle vehicle) {
-        return new VehicleListResponseDTO(
-        );
+        VehicleListResponseDTO dto = new VehicleListResponseDTO();
+        dto.setId(vehicle.getId());
+        dto.setPlaca(vehicle.getPlaca());
+        dto.setMarca(vehicle.getMarca());
+        dto.setQuilometragem(vehicle.getQuilometragem());
+        dto.setStatus(vehicle.getStatus().getDescricao());
+        return dto;
     }
 
     public VehicleResponseDTO toResponseDTO(Vehicle vehicle) {
-        VehicleResponseDTO dto = new VehicleResponseDTO(
-        );
+        VehicleResponseDTO dto = new VehicleResponseDTO();
+        dto.setId(vehicle.getId());
+        dto.setPlaca(vehicle.getPlaca());
+        dto.setMarca(vehicle.getMarca());
+        dto.setQuilometragem(vehicle.getQuilometragem());
+        dto.setStatus(vehicle.getStatus());
 
         if (vehicle.getVehicleTires() != null) {
             List<VehicleTireResponseDTO> pneus = vehicle.getVehicleTires()
@@ -28,6 +38,8 @@ public class VehicleMapper {
                     .map(this::toVehicleTireResponseDTO)
                     .collect(Collectors.toList());
             dto.setPneus(pneus);
+        } else {
+            dto.setPneus(new ArrayList<>());
         }
 
         return dto;
