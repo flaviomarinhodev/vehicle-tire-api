@@ -16,7 +16,6 @@ Esta aplicação é uma API RESTful para gerenciamento de veículos e pneus, per
 - **OpenAPI/Swagger** (Documentação da API)
 - **Docker & Docker Compose** (Conteinerização)
 - **Maven** (Gerenciamento de dependências)
-- **H2 Database** (Para testes)
 
 ## Estrutura do Projeto
 
