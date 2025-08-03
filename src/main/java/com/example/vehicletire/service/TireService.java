@@ -1,58 +1,90 @@
 package com.example.vehicletire.service;
 
+import com.example.vehicletire.dto.request.TireCreateRequestDTO;
+import com.example.vehicletire.dto.response.TireListResponseDTO;
+import com.example.vehicletire.dto.response.TireResponseDTO;
 import com.example.vehicletire.entity.Tire;
 import com.example.vehicletire.entity.TireStatus;
+import com.example.vehicletire.mapper.TireMapper;
 import com.example.vehicletire.repository.TireRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class TireService {
 
     private final TireRepository tireRepository;
+    private final TireMapper tireMapper;
 
-    @Autowired
-    public TireService(TireRepository tireRepository) {
+    public TireService(TireRepository tireRepository, TireMapper tireMapper) {
         this.tireRepository = tireRepository;
+        this.tireMapper = tireMapper;
     }
 
-    public Optional<Tire> findByNumeroFogo(String numeroFogo) {
-        return tireRepository.findByNumeroFogo(numeroFogo);
+    public TireResponseDTO findByNumeroFogo(String numeroFogo) throws Exception {
+        Tire tire = tireRepository.findByNumeroFogo(numeroFogo)
+                .orElseThrow(() -> new Exception("Pneu não encontrado"));
+        return tireMapper.toResponseDTO(tire);
+
     }
+
 
     public boolean existsByNumeroFogo(String numeroFogo) {
         return tireRepository.existsByNumeroFogo(numeroFogo);
     }
 
-    public List<Tire> findByStatus(TireStatus status) {
-        return tireRepository.findByStatus(status);
+    public List<TireListResponseDTO> findByStatus(TireStatus status) {
+        return tireRepository.findByStatus(status)
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Tire> findAllAvailable() {
-        return tireRepository.findAllAvailable();
+    public List<TireListResponseDTO> findAllAvailable() {
+        return tireRepository.findAllAvailable()
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Tire> findAllInUse() {
-        return tireRepository.findAllInUse();
+    public List<TireListResponseDTO> findAllInUse() {
+        return tireRepository.findAllInUse()
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Tire> findByMarcaContaining(String marca) {
-        return tireRepository.findByMarcaIgnoreCaseContaining(marca);
+    public List<TireListResponseDTO> findByMarcaContaining(String marca) {
+        return tireRepository.findByMarcaIgnoreCaseContaining(marca)
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Tire> findByMarcaContainingAndStatus(String marca, TireStatus status) {
-        return tireRepository.findByMarcaIgnoreCaseContainingAndStatus(marca, status);
+
+    public List<TireListResponseDTO> findByMarcaContainingAndStatus(String marca, TireStatus status) {
+        return tireRepository.findByMarcaIgnoreCaseContainingAndStatus(marca, status)
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Tire> findByPressaoBetween(Double min, Double max) {
-        return tireRepository.findByPressaoAtualBetween(min, max);
+    public List<TireListResponseDTO> findByPressaoBetween(Double min, Double max) {
+        return tireRepository.findByPressaoAtualBetween(min, max)
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Tire> findWithLowPressure(Double pressaoMinima) {
-        return tireRepository.findWithLowPressure(pressaoMinima);
+    public List<TireListResponseDTO> findWithLowPressure(Double pressaoMinima) {
+        return tireRepository.findWithLowPressure(pressaoMinima)
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
     public long countAvailableTires() {
@@ -63,35 +95,57 @@ public class TireService {
         return tireRepository.countTiresInUse();
     }
 
-    public List<Tire> findAllOrderedByMarcaAndNumeroFogo() {
-        return tireRepository.findAllByOrderByMarcaAscNumeroFogoAsc();
+    public List<TireListResponseDTO> findAllOrderedByMarcaAndNumeroFogo() {
+        return tireRepository.findAllByOrderByMarcaAscNumeroFogoAsc()
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public Optional<Tire> findByIdWithVehicles(Long id) {
-        return tireRepository.findByIdWithVehicles(id);
+    public TireResponseDTO findByIdWithVehicles(Long id) throws Exception {
+        Tire byIdWithVehicles = tireRepository.findByIdWithVehicles(id)
+                .orElseThrow(() -> new Exception("Pneu não encontrado"));
+        return tireMapper.toResponseDTO(byIdWithVehicles);
     }
 
-    public List<Tire> findUnassignedTires() {
-        return tireRepository.findUnassignedTires();
+    public List<TireListResponseDTO> findUnassignedTires() {
+        return tireRepository.findUnassignedTires()
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<Tire> findByMarcas(List<String> marcas) {
-        return tireRepository.findByMarcaIn(marcas);
+    public List<TireListResponseDTO> findByMarcas(List<String> marcas) {
+        return tireRepository.findByMarcaIn(marcas)
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public Tire save(Tire tire) {
-        return tireRepository.save(tire);
+    public TireResponseDTO save(TireCreateRequestDTO requestDTO) {
+
+        Tire tire = tireMapper.toEntity(requestDTO);
+        Tire savedTire = tireRepository.save(tire);
+
+        return tireMapper.toResponseDTO(savedTire);
     }
 
     public void deleteById(Long id) {
         tireRepository.deleteById(id);
     }
 
-    public Optional<Tire> findById(Long id) {
-        return tireRepository.findById(id);
+    public TireResponseDTO findById(Long id) {
+        Tire tire = tireRepository.findById(id)
+                .orElseThrow();
+        return tireMapper.toResponseDTO(tire);
     }
 
-    public List<Tire> findAll() {
-        return tireRepository.findAll();
+
+    @Transactional
+    public List<TireListResponseDTO> findAll() {
+        return tireRepository.findAll()
+                .stream()
+                .map(tireMapper::toListResponseDTO)
+                .collect(Collectors.toList());
     }
 }

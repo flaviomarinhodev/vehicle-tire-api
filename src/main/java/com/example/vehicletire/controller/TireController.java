@@ -1,14 +1,17 @@
 package com.example.vehicletire.controller;
 
 import com.example.vehicletire.business.TireBusiness;
-import com.example.vehicletire.entity.Tire;
+import com.example.vehicletire.dto.request.TireCreateRequestDTO;
+import com.example.vehicletire.dto.response.TireListResponseDTO;
+import com.example.vehicletire.dto.response.TireResponseDTO;
 import com.example.vehicletire.entity.TireStatus;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/tires")
@@ -22,89 +25,53 @@ public class TireController {
     }
 
     @PostMapping
-    public ResponseEntity<Tire> criarPneu(@RequestBody Tire tire) {
-        Tire criado = tireBusiness.cadastrarNovoPneu(tire);
-        return ResponseEntity.ok(criado);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Tire> atualizarPneu(@PathVariable Long id, @RequestBody Tire dadosAtualizados) {
-        Tire atualizado = tireBusiness.atualizarPneu(id, dadosAtualizados);
-        return ResponseEntity.ok(atualizado);
+    public ResponseEntity<TireResponseDTO> criarPneu(@Valid @RequestBody TireCreateRequestDTO dto) {
+        TireResponseDTO tire = tireBusiness.cadastrarNovoPneu(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tire);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPneu(@PathVariable Long id) {
         tireBusiness.removerPneu(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/disponiveis")
-    public ResponseEntity<List<Tire>> listarDisponiveis() {
-        return ResponseEntity.ok(tireBusiness.listarTodosDisponiveis());
+    public ResponseEntity<List<TireListResponseDTO>> listarDisponiveis() {
+        List<TireListResponseDTO> tires = tireBusiness.listarTodosDisponiveis();
+        return ResponseEntity.status(HttpStatus.OK).body(tires);
     }
 
     @GetMapping("/em-uso")
-    public ResponseEntity<List<Tire>> listarEmUso() {
-        return ResponseEntity.ok(tireBusiness.listarTodosEmUso());
+    public ResponseEntity<List<TireListResponseDTO>> listarEmUso() {
+        List<TireListResponseDTO> tires = tireBusiness.listarTodosEmUso();
+        return ResponseEntity.status(HttpStatus.OK).body(tires);
     }
 
     @GetMapping("/marca")
-    public ResponseEntity<List<Tire>> buscarPorMarca(@RequestParam String marca) {
-        return ResponseEntity.ok(tireBusiness.buscarPorMarca(marca));
+    public ResponseEntity<List<TireListResponseDTO>> buscarPorMarca(@RequestParam List<String> marca) {
+        List<TireListResponseDTO> tires = tireBusiness.buscarPorMarca(marca);
+        return ResponseEntity.status(HttpStatus.OK).body(tires);
     }
 
     @GetMapping("/marca-status")
-    public ResponseEntity<List<Tire>> buscarPorMarcaEStatus(@RequestParam String marca, @RequestParam TireStatus status) {
-        return ResponseEntity.ok(tireBusiness.buscarPorMarcaEStatus(marca, status));
+    public ResponseEntity<List<TireListResponseDTO>> buscarPorMarcaEStatus(@RequestParam String marca, @RequestParam TireStatus status) {
+        List<TireListResponseDTO> tires = tireBusiness.buscarPorMarcaEStatus(marca, status);
+        return ResponseEntity.status(HttpStatus.OK).body(tires);
     }
 
-    @GetMapping("/pressao-entre")
-    public ResponseEntity<List<Tire>> listarPressaoEntre(@RequestParam double min, @RequestParam double max) {
-        return ResponseEntity.ok(tireBusiness.listarPressaoEntre(min, max));
-    }
-
-    @GetMapping("/pressao-baixa")
-    public ResponseEntity<List<Tire>> listarComPressaoBaixa(@RequestParam double pressaoMinima) {
-        return ResponseEntity.ok(tireBusiness.listarComPressaoBaixa(pressaoMinima));
-    }
-
-    @GetMapping("/numero-fogo/{numeroFogo}")
-    public ResponseEntity<Tire> buscarPorNumeroFogo(@PathVariable String numeroFogo) {
-        Optional<Tire> tire = tireBusiness.buscarPorNumeroFogo(numeroFogo);
-        return tire.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/{id}/veiculos")
-    public ResponseEntity<Tire> buscarPorIdComVeiculos(@PathVariable Long id) {
-        Optional<Tire> tire = tireBusiness.buscarPorIdComVeiculos(id);
-        return tire.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/nao-atribuido")
-    public ResponseEntity<List<Tire>> listarNaoAtribuidos() {
-        return ResponseEntity.ok(tireBusiness.listarNaoAtribuidos());
-    }
 
     @GetMapping("/contar/disponiveis")
     public ResponseEntity<Long> contarDisponiveis() {
-        return ResponseEntity.ok(tireBusiness.contarDisponiveis());
+        Long count = tireBusiness.contarDisponiveis();
+        return ResponseEntity.status(HttpStatus.OK).body(count);
     }
 
     @GetMapping("/contar/em-uso")
     public ResponseEntity<Long> contarEmUso() {
-        return ResponseEntity.ok(tireBusiness.contarEmUso());
+        Long count = tireBusiness.contarEmUso();
+        return ResponseEntity.status(HttpStatus.OK).body(count);
     }
 
-    @GetMapping("/ordenados")
-    public ResponseEntity<List<Tire>> listarOrdenadosPorMarcaENumero() {
-        return ResponseEntity.ok(tireBusiness.listarOrdenadosPorMarcaENumero());
-    }
 
-    @PostMapping("/buscar-por-marcas")
-    public ResponseEntity<List<Tire>> buscarPorMarcas(@RequestBody List<String> marcas) {
-        return ResponseEntity.ok(tireBusiness.buscarPorMarcas(marcas));
-    }
 }
