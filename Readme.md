@@ -110,19 +110,9 @@ O projeto utiliza PostgreSQL como banco de dados principal e Flyway para gerenci
 - HIBERNATE_DDL_AUTO
 - SERVER_PORT
 
-## Docker
+## Monitoramento
 
-O projeto inclui arquivos para conteinerização:
-
-- **Dockerfile**: Configuração para construir a imagem da aplicação
-- **docker-compose.yml**: Orquestra a aplicação e o banco de dados
-
-
-## Monitoramento e Atuação
-
-O projeto inclui Spring Actuator para monitoramento:
-- https://vehicle-tire-api.onrender.com/actuator/health
-
+**https://vehicle-tire-api.onrender.com/actuator/health**
 
 ---
 
