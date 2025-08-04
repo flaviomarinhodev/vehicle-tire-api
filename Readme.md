@@ -54,11 +54,17 @@ O projeto segue uma arquitetura em camadas padrão para aplicações Spring.
    ```bash
     ./mvnw test
    ```
+   
+## Ambiente de Demonstração
+   ```
+   https://vehicle-tire-api.onrender.com
+   ```
+
 ## Exemplos de Requisição
 
 Cadastrar um novo veículo:
    ```
-curl -X POST http://localhost:8080/api/v1/veiculos \
+curl -X POST https://vehicle-tire-api.onrender.com/api/v1/veiculos \
 -H "Content-Type: application/json" \
 -d '{
 "placa": "ABC1D23",
@@ -71,20 +77,20 @@ curl -X POST http://localhost:8080/api/v1/veiculos \
 ```
 Listar todos os veículos cadastrados:
 ```
-curl -X GET http://localhost:8080/api/v1/veiculos \
+curl -X GET https://vehicle-tire-api.onrender.com/api/v1/veiculos \
   -H "Accept: application/json"
 ```
 Buscar veículo pelo id:
 ```
-curl http://localhost:8080/api/v1/veiculos/1
+curl https://vehicle-tire-api.onrender.com/api/v1/veiculos/1
 ```
 Listar todos os pneus disponíveis:
 ```
-curl http://localhost:8080/api/v1/tires/disponiveis
+curl https://vehicle-tire-api.onrender.com/api/v1/tires/disponiveis
 ```
 Buscar pneu por marca:
 ```
-curl http://localhost:8080/api/v1/tires/marca?marca=GOODYEAR
+curl https://vehicle-tire-api.onrender.com/api/v1/tires/marca?marca=GOODYEAR
 ```
 
 ## Documentação da API
