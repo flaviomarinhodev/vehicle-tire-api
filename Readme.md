@@ -121,7 +121,7 @@ O projeto inclui arquivos para conteinerização:
 ## Monitoramento e Atuação
 
 O projeto inclui Spring Actuator para monitoramento:
-- http://localhost:8080/actuator/health
+- https://vehicle-tire-api.onrender.com/actuator/health
 
 
 ---
