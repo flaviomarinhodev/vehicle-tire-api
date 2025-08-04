@@ -18,10 +18,6 @@ Esta aplicação é uma API REST para gerenciamento de veículos e pneus, permit
 - Maven
 - Cloud
 
-## Estrutura do Projeto
-
-O projeto segue uma arquitetura em camadas padrão para aplicações Spring.
-
 ## Configuração do Ambiente
 
 ### Pré-requisitos
@@ -52,14 +48,14 @@ O projeto segue uma arquitetura em camadas padrão para aplicações Spring.
     - API: http://localhost:8080
 
 5. Testes automatizados
-   ```bash
+   ```
     ./mvnw test
    ```
    
 ## Ambiente de Demonstração
-   ```
-   https://vehicle-tire-api.onrender.com
-   ```
+ - **https://vehicle-tire-api.onrender.com**
+
+
 
 ## Exemplos de Requisição
 
