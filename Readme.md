@@ -14,6 +14,7 @@ Esta aplicação é uma API REST para gerenciamento de veículos e pneus, permit
 - Spring Data JPA
 - Spring MVC
 - PostgreSQL 15
+- Junit/Mockito
 - Flyway
 - Lombok
 - OpenAPI/Swagger
