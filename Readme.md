@@ -45,8 +45,9 @@ Esta aplicação é uma API REST para gerenciamento de veículos e pneus, permit
    ```
 
 4. A aplicação estará disponível em:
-    - API: http://localhost:8080
-
+   ```
+    http://localhost:8080
+   ```
 5. Testes automatizados
    ```
     ./mvnw test
