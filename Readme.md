@@ -1,3 +1,6 @@
+
+![pneu_imagem](https://github.com/user-attachments/assets/bd5eaee1-f054-47a8-8935-ef719ef269bd)
+
 # API de Gerenciamento de Veículos e Pneus
 
 ## Visão Geral
