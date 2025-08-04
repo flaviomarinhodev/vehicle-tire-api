@@ -6,16 +6,17 @@ Esta aplicação é uma API REST para gerenciamento de veículos e pneus, permit
 
 ## Tecnologias
 
-- **Java 17**
-- **Spring Boot 3.5.4**
-- **Spring Data JPA**
-- **Spring MVC**
-- **PostgreSQL 15**
-- **Flyway** 
-- **Lombok** 
-- **OpenAPI/Swagger** 
-- **Docker**
-- **Maven** 
+- *Java 17*
+- *Spring Boot 3.5.4*
+- *Spring Data JPA*
+- *Spring MVC*
+- *PostgreSQL 15*
+- *Flyway**
+- *Lombok*
+- *OpenAPI/Swagger*
+- *Docker*
+- *Maven*
+- *Cloud*
 
 ## Estrutura do Projeto
 
