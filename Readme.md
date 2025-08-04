@@ -54,7 +54,7 @@ Esta aplicação é uma API REST para gerenciamento de veículos e pneus, permit
    ```
    
 ## Ambiente de Demonstração
-  **https://vehicle-tire-api.onrender.com**
+  **https://vehicle-tire-api.onrender.com/api/v1/veiculos**
 
 
 
