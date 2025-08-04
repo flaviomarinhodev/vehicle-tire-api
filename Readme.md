@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Esta aplicação é uma API RESTful para gerenciamento de veículos e pneus, permitindo associar pneus a veículos, consultar informações detalhadas e gerenciar o ciclo de vida desses componentes. A API é construída com Spring Boot e utiliza PostgreSQL como banco de dados.
+Esta aplicação é uma API REST para gerenciamento de veículos e pneus, permitindo associar pneus a veículos, consultar informações detalhadas e gerenciar o ciclo de vida desses componentes. A API é construída com Spring Boot e utiliza PostgreSQL como banco de dados.
 
 ## Tecnologias
 
@@ -14,28 +14,12 @@ Esta aplicação é uma API RESTful para gerenciamento de veículos e pneus, per
 - **Flyway** 
 - **Lombok** 
 - **OpenAPI/Swagger** 
-- **Docker & Docker Compose** 
+- **Docker
 - **Maven** 
 
 ## Estrutura do Projeto
 
-O projeto segue uma arquitetura em camadas padrão para aplicações Spring:
-
-## Funcionalidades Principais
-
-A API oferece os seguintes endpoints principais:
-
-### Veículos
-
-- **GET /api/v1/veiculos**: Lista todos os veículos
-- **GET /api/v1/veiculos/{id}**: Busca um veículo pelo ID
-- **POST /api/v1/veiculos**: Cria um novo veículo
-- **POST /api/v1/veiculos/{vehicleId}/pneus**: Associa um pneu a um veículo
-- **DELETE /api/v1/veiculos/{vehicleId}/pneus/{tireId}**: Remove um pneu de um veículo
-
-### Pneus
-
-- Endpoints para gerenciamento de pneus (listagem, criação, atualização, exclusão)
+O projeto segue uma arquitetura em camadas padrão para aplicações Spring.
 
 ## Configuração do Ambiente
 
@@ -66,6 +50,10 @@ A API oferece os seguintes endpoints principais:
 4. A aplicação estará disponível em:
     - API: http://localhost:8080
 
+5. Testes automatizados
+   ```bash
+    ./mvnw test
+   ```
 ## Exemplos de Requisição
 
 Cadastrar um novo veículo:
