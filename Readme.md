@@ -93,7 +93,6 @@ curl https://vehicle-tire-api.onrender.com/api/v1/tires/marca?marca=GOODYEAR
 
 ## Documentação da API
 
-A documentação completa da API está disponível através do Swagger UI:
 **https://vehicle-tire-api.onrender.com/swagger-ui.html**
 
 
