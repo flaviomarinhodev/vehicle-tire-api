@@ -14,7 +14,7 @@ Esta aplicação é uma API REST para gerenciamento de veículos e pneus, permit
 - **Flyway** 
 - **Lombok** 
 - **OpenAPI/Swagger** 
-- **Docker
+- **Docker**
 - **Maven** 
 
 ## Estrutura do Projeto
