@@ -98,11 +98,6 @@ curl https://vehicle-tire-api.onrender.com/api/v1/tires/marca?marca=GOODYEAR
 
 **https://vehicle-tire-api.onrender.com/swagger-ui.html**
 
-
-## Banco de Dados
-
-O projeto utiliza PostgreSQL como banco de dados principal e Flyway para gerenciar migrações.
-
 ## Principais Variáveis de Ambiente
 - DB_CONNECTION_TIMEOUT
 - DB_PASSWORD
